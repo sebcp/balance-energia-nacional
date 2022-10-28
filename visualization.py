@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 def plot_secciones(path, title):
     df_secciones = pd.read_csv(path)
@@ -8,18 +9,17 @@ def plot_secciones(path, title):
     fig = px.bar(df_secciones, x="Año", y="Teracalorías", color="Energético", title=title)
     return fig
 
+def plot_total(path):
+    df_total = pd.read_csv(path)
+    df_total = df_total.rename(columns={"anio": "Año", "categoria": "Categoría", "tcal": "Teracalorías"})
+    fig = px.line(df_total, x="Año", y="Teracalorías", color="Categoría", title="Consumo energético total por categoría", markers=True)
+    return fig
+
 fig_mineria_secciones = plot_secciones("files/bne_mineria_secciones.csv", "Consumo energético de minería según energético")
 fig_industria_secciones = plot_secciones("files/bne_industrial_secciones.csv", "Consumo energético industrial según energético")
 fig_transporte_secciones = plot_secciones("files/bne_transporte_secciones.csv", "Consumo energético de transporte según energético")
 fig_no_industrial_secciones = plot_secciones("files/bne_no_industriales_secciones.csv", "Consumo energético público, residencial, comercial y sanitario según energético")
 
-'''
-with open("secciones_graph.html", "w+") as f:
-    f.write(fig_mineria_secciones.to_html(full_html = False, include_plotlyjs="cdn"))
-    f.write(fig_transporte_secciones.to_html(full_html = False, include_plotlyjs="cdn"))
-    f.write(fig_industria_secciones.to_html(full_html = False, include_plotlyjs="cdn"))
-    f.write(fig_no_industrial_secciones.to_html(full_html = False, include_plotlyjs="cdn"))
-'''
 html = """
 <!DOCTYPE html>
 
@@ -62,3 +62,7 @@ div_no_industrial.append(BeautifulSoup(fig_no_industrial_secciones.to_html(full_
 
 with open("secciones_graph.html", "w+") as f:
     f.write(str(soup))
+
+with open("total_graph.html", "w+") as f:
+    fig = plot_total("files/bne_total_categorico_anio.csv")
+    f.write(fig.to_html(full_html = True, include_plotlyjs=True))
