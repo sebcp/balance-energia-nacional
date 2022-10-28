@@ -4,10 +4,10 @@ Originalmente se pensó trabajar con los distintos archivos en formato Excel que
 
 ## Preprocesamiento
 Preliminarmente se consideran cuatro categorías importantes a nivel nacional en términos de consumo energético:
-⋅⋅* Minería (Que engloba todo lo relacionado a la extracción y procesamiento del cobre, salitre, hierro y otros minerales no especificados)
-⋅⋅* Industria (Que engloba las industrias de papel y celulosa, siderurgia, petroquímica, cemento, azúcar, pesca y otros tipos no especificados)
-⋅⋅* Transporte (Que engloba el transporte terrestre común, el transporte ferroviario, el transporte marítimo y el transporte aéreo)
-⋅⋅* Consumo no industrial (Que engloba el consumo energético de las áreas comercial, pública, residencial y sanitaria)
+* Minería (Que engloba todo lo relacionado a la extracción y procesamiento del cobre, salitre, hierro y otros minerales no especificados)
+* Industria (Que engloba las industrias de papel y celulosa, siderurgia, petroquímica, cemento, azúcar, pesca y otros tipos no especificados)
+* Transporte (Que engloba el transporte terrestre común, el transporte ferroviario, el transporte marítimo y el transporte aéreo)
+* Consumo no industrial (Que engloba el consumo energético de las áreas comercial, pública, residencial y sanitaria)
 
 Para preprocesar los datos se utilizó la librería Pandas, con la cual se segmentaron los datos en distintos CSVs, creando nuevos archivos separados que contienen el año, el tipo de energético del que proviene la energía y la cantidad de energía consumida en teracalorías para cada categoría. También se generó un CSV con el consumo total por categoría a través de los años.
 
