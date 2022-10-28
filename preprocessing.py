@@ -42,21 +42,25 @@ df_mineria_no_seccionado = df_mineria.drop(["seccion","categoria"], axis=1)
 df_mineria_grouped_total = df_mineria_no_seccionado.groupby("anio").sum()
 df_mineria_grouped_total = df_mineria_grouped_total.reset_index()
 df_mineria_grouped_total["categoria"] = "Minería"
+df_mineria_grouped_total.to_csv("files/bne_total_mineria_anio.csv", index=False)
 
 df_industrial_no_seccionado = df_industrial.drop(["seccion","categoria"], axis=1)
 df_industrial_grouped_total = df_industrial_no_seccionado.groupby("anio").sum()
 df_industrial_grouped_total = df_industrial_grouped_total.reset_index()
 df_industrial_grouped_total["categoria"] = "Industrial"
+df_industrial_grouped_total.to_csv("files/bne_total_industrial_anio.csv", index=False)
 
 df_transporte_no_seccionado = df_transporte.drop(["seccion","categoria"], axis=1)
 df_transporte_grouped_total = df_transporte_no_seccionado.groupby("anio").sum()
 df_transporte_grouped_total = df_transporte_grouped_total.reset_index()
 df_transporte_grouped_total["categoria"] = "Transporte"
+df_transporte_grouped_total.to_csv("files/bne_total_transporte_anio.csv", index=False)
 
 df_no_industriales_no_seccionado = df_no_industriales.drop(["seccion","categoria"], axis=1)
 df_no_industriales_grouped_total = df_no_industriales_no_seccionado.groupby("anio").sum()
 df_no_industriales_grouped_total = df_no_industriales_grouped_total.reset_index()
 df_no_industriales_grouped_total["categoria"] = "Público, residencial, comercial y sanitaria"
+df_no_industriales_grouped_total.to_csv("files/bne_total_no_industriales_anio.csv", index=False)
 
 frames = [df_mineria_grouped_total, df_industrial_grouped_total, df_transporte_grouped_total, df_no_industriales_grouped_total]
 df_total_categorico_anio = pd.concat(frames)
